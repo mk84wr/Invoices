@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1aed8b8d-5a2b-4dc1-b180-722c077aa237": {
+      "ProjectGuid": "1aed8b8d-5a2b-4dc1-b180-722c077aa237",
+      "DisplayName": "InvoicesBackend",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Różne pliki",
+      "ColorIndex": -1
+    },
+    "63a80c67-1a48-4e87-8814-051d22fc932d": {
+      "ProjectGuid": "63a80c67-1a48-4e87-8814-051d22fc932d",
+      "DisplayName": "EmailSender",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

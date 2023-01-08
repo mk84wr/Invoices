@@ -1,0 +1,64 @@
+<div>
+    <div class="modal-header">
+        <div class="title">Edytuj fakturę nr&nbsp;</div><div class="title_label">{{number}}</div>
+        <button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="form" [formGroup]="invoiceForm" (ngSubmit)="editInvoice()">
+            <div class="row mt-2 form-group">
+                <label class="col-4"><div class ="label">Numer faktury</div></label>
+                <input class="col-5" type="text" [(ngModel)]="model.number" name="number" formControlName="number" maxlength="20" #numberRef/>
+                <div class="offset-4 count">
+					<span>{{numberRef.value.length}}</span><span>/20</span>
+				</div>
+                <span class="text-danger" *ngIf="(invoiceFormControl['number'].touched || submitted) && invoiceFormControl['number'].errors?.['invalid'] ">
+                    Numer faktury jest polem obowiązkowym
+                </span>
+            </div>
+            <div class="row mt-2 form-group">
+                <label class="col-4"><div class ="label">Data wystawienia</div></label>
+                <input class="col-5" type="date"  (ngModelChange)="model.dateOfInvoice = $event" name="dateOfInvoice" formControlName="dateOfInvoice" />
+                <span class="text-danger" *ngIf="(invoiceFormControl['dateOfInvoice'].touched || submitted) && invoiceFormControl['dateOfInvoice'].errors?.['required'] "> Data wystawienia jest polem obowiązkowym</span>
+            </div>
+            <div class="row mt-2 form-group">
+                <label class="col-4"><div class ="label">Data płatności</div></label>
+                <input class="col-5" type="date" (ngModelChange)="model.dueDate = $event" name="dueDate" formControlName="dueDate" />
+                <span class="text-danger" *ngIf="(invoiceFormControl['dueDate'].touched || submitted) && invoiceFormControl['dueDate'].errors?.['required'] "> Data płatności jest polem obowiązkowym</span>
+            </div>
+            <div class="row mt-2 form-group">
+                <label class="col-4"><div class ="label">Wartość</div></label>
+                <input class="col-5" type="number" step="0.01" [(ngModel)]="model.value" name="value" formControlName="value" />
+                <span class="text-danger" *ngIf="(invoiceFormControl['value'].touched || submitted) && invoiceFormControl['value'].errors?.['required'] "> Wartość jest polem obowiązkowym</span>
+            </div>
+            <div class="row mt-2 form-group">
+                <label class="col-4"><div class ="label">Kategoria</div></label>
+                <select class="col-5" [(ngModel)]="model.categoryId" name="category" formControlName="category">
+                    <option *ngFor="let category of categories" [ngValue]="category.id">
+                        {{category.name}}
+                    </option>
+                </select>
+                <button type="button" class="btn btn-primary float-end btn-sm col-2 mx-2" (click)="addCategory()" style="box-shadow: none !important" [disabled]="submittedButton">
+                    <span *ngIf="!submittedButton">Dodaj</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+                </button>
+                <span class="text-danger" *ngIf="(invoiceFormControl['category'].touched || submitted) && invoiceFormControl['category'].errors?.['required'] "> Kategoria jest polem obowiązkowym</span>
+            </div>
+            <div class="row my-2 form-group">
+                <label class="col-4"><div class ="label">Kontrahent</div></label>
+                <select class="col-5" [(ngModel)]="model.customerId" name="customer" formControlName="customer">
+                    <option *ngFor="let customer of customers" [ngValue]="customer.id">
+                        {{customer.name}}
+                    </option>
+                </select>
+                <button type="button" class="btn btn-primary float-end btn-sm col-2 mx-2" (click)="addCustomer()" style="box-shadow: none !important" [disabled]="submittedButton">
+                    <span *ngIf="!submittedButton">Dodaj</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+                </button>
+                <span class="text-danger" *ngIf="(invoiceFormControl['customer'].touched || submitted) && invoiceFormControl['customer'].errors?.['required'] "> Kontrahent jest polem obowiązkowym</span>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+                    <span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

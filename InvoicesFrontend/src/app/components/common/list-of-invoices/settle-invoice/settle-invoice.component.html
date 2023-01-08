@@ -1,0 +1,48 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Rozlicz fakturę nr&nbsp;</div><div class="title_label">{{model.number}}</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+        <form [formGroup]="invoiceForm" (ngSubmit)="settleInvoice()">  
+            <div class = "row mt-2">
+                <label class ="col-4"><div class ="label">Wartość</div></label>
+                <label class ="col-5"><div class ="field">{{model.value}}</div></label>
+            </div>   
+            <div class = "row mt-2">
+                <label class ="col-4"><div class ="label">Pozostało</div></label>
+                <label class ="col-5"><div class ="field">{{model.toPay}}</div></label>
+            </div>     
+            <div class = "row mt-2">
+                <label class ="col-4"><div class ="label">Zapłata</div></label>
+                <input
+                    class ="col-5"
+                    type="number"  step="0.01"
+                    [(ngModel)]="payment"
+                    name="payment"
+                    formControlName="payment"
+                />
+                <button type="button" class="btn btn-primary float-end btn-sm col-2 mx-2"(click)="setPayment()" style="box-shadow: none !important">Wszystko</button>
+                <span class="text-danger" *ngIf="(invoiceFormControl['payment'].touched || submitted) && invoiceFormControl['payment'].errors?.['min'] ">Nieprawidłowa wartość</span>
+                <span class="text-danger" *ngIf="(invoiceFormControl['payment'].touched || submitted) && invoiceFormControl['payment'].errors?.['max'] ">Nieprawidłowa wartość</span>
+            </div>  
+            <div class = "row mt-2">
+                <label class ="col-4"><div class ="label">Data rozliczenia</div></label>
+                <input
+                    class ="col-4"
+                    type="date"
+                    [ngModel]="model.settlementDate | date:'yyyy-MM-dd'" 
+                    (ngModelChange)="settlementDate = $event" 
+                    name ="settlementDate" 
+                    formControlName ="settlementDate"        
+                />
+            </div>          
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+                    <span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+                </button>
+            </div>					
+        
+    </form>
+    </div>
+</div>

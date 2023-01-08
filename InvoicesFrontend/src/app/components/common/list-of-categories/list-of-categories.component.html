@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-1"><div class="field">Lp</div></div>
+    <div [ngClass]="auth.isModerator()?'col-5 col-lg-3': 'col-5'"><div class="field">Nazwa</div></div>
+    <div class="col-3 d-none d-lg-block"><div class="field">Wystawione</div></div>
+    <div class="col-4 col-lg-2"><div class="field">Niezapłacone</div></div>
+    <div class="col-2 col-lg-1"></div>
+    <div class="col-1 d-none d-lg-block"><div *ngIf="auth.isModerator()"></div></div>
+    <div class="col-1 d-none d-lg-block"><div *ngIf="auth.isModerator()"></div></div>
+  </div>
+  <app-category *ngFor="let category of categories | slice: (page-1) * pageSize : page * pageSize; let i = index"    
+    [category]="category"
+    [index]="(page-1) * pageSize + i+1"
+    [parentApi]="getCategoryParentApi()"></app-category>
+  <div class="my-3"></div>
+    <ngb-pagination 
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="categories.length"
+  [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
+	</ngb-pagination>
+</div>
+    
+

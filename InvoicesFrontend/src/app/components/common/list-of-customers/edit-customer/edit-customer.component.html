@@ -1,0 +1,176 @@
+<div>
+	<div class="modal-header">
+		<div class ="row">
+			<div class="title">Edytuj kontrahenta</div>
+			<div class="w-100"></div>
+			<div class="title_label">{{name}}</div>
+		</div>		
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="nipForm">
+			<div class="row mt-2">
+                <label class ="col-4"><div class ="label">NIP</div></label>
+                <input
+                    class ="col-5"
+                    type="text"
+                    [(ngModel)]="model.nip"
+                    name="nip" 
+					formControlName="nip" 
+					maxlength="20"
+					#nipRef
+                >
+                <button type="button" class="btn btn-primary float-end btn-sm col-2 mx-2"(click)="getBusiness(model.nip??'')" style="box-shadow: none !important" [disabled]="!ready || submittedButton">
+					<span>Uzupełnij</span>
+				</button>
+				<div class="offset-4 count">
+					<span>{{nipRef.value.length}}</span><span>/20</span>
+					<span class="offset-5" *ngIf="!ready">{{time}}</span>
+				</div>	
+				<span class="text-danger" *ngIf="(nipFormControl['nip'].touched || submittedNip) && nipFormControl['nip'].errors?.['invalid']">
+                    Niepoprawny NIP
+                </span>
+            </div>
+		</form>
+        <form [formGroup]="customerForm" (ngSubmit)="editCustomer()">            
+			<div class="row mt-2">
+				<label class ="col-4"><div class ="label">Nazwa</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.name"
+					name="name" 
+					formControlName="name" 
+					maxlength="100"  
+					#nameRef           
+				>
+				<div class="offset-4 count">
+					<span>{{nameRef.value.length}}</span><span>/100</span>
+				</div>
+				<span class="text-danger" *ngIf="(customerFormControl['name'].touched || submitted) && customerFormControl['name'].errors?.['invalid'] ">
+                    Nazwa kontrahenta jest obowiązkowa
+                </span>
+			</div> 
+            <div class="row mt-2">
+                <label class ="col-4"><div class ="label">Miasto</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.city"
+					name="city"  
+					formControlName="city"  
+					maxlength="100"  
+					#cityRef        
+				>
+				<div class="offset-4 count">
+					<span>{{cityRef.value.length}}</span><span>/100</span>
+				</div>
+			</div> 
+            <div class="row mt-2">
+                <label class ="col-4"><div class ="label">Ulica i numer</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.street"
+					name="street"  
+					formControlName="street"  
+					maxlength="100" 
+					#streetRef         
+				>
+				<div class="offset-4 count">
+					<span>{{streetRef.value.length}}</span><span>/100</span>
+				</div>
+			</div>  
+			<div class="row mt-2">
+                <label class ="col-4"><div class ="label">Numer telefonu</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.phone"
+					name="phone"   
+					formControlName="phone"   
+					maxlength="20"  
+					#phoneRef       
+				>
+				<div class="offset-4 count">
+					<span>{{phoneRef.value.length}}</span><span>/20</span>
+				</div>
+			</div>  
+			<div class="row mt-2">
+                <label class ="col-4"><div class ="label">Email</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.email"
+					name="email"   
+					formControlName="email"   
+					maxlength="50" 
+					#emailRef        
+				>
+				<div class="offset-4 count">
+					<span>{{emailRef.value.length}}</span><span>/50</span>
+				</div>
+				<span class="text-danger" *ngIf="(customerFormControl['email'].touched || submitted) && customerFormControl['email'].errors?.['email'] ">
+					E-mail niepoprawny
+				</span>
+			</div>                 
+            <div class="row mt-2 ">
+                <label class ="col-3"><div class ="label">Aktywny</div></label>
+				<div class="form-control col-5">
+				<label class="radio-inline mx-2">
+               <input
+					type="radio"
+					[(ngModel)] ="model.isActive"
+					name="isActive"
+					[value] ="true"	
+					formControlName ="isActive"				
+			   >
+			  Aktywny
+			   </label>
+			   <label class="radio-inline mx-2">
+			   <input
+					type="radio"
+					[(ngModel)] ="model.isActive"
+					name="isActive"
+					[value] ="false"
+					formControlName ="isActive"							
+			   >
+			   Nieaktywny
+			   </label>
+			   </div>
+                </div>
+                
+                <div class="row mt-2 ">
+					<label class ="col-3"><div class ="label">Widoczny</div></label>
+					<div class="form-control col-5">
+					<label class="radio-inline mx-2">
+				   <input
+						type="radio"
+						[(ngModel)] ="model.isVisible"
+						name="isVisible"
+						[value] ="true"	
+						formControlName	="isVisible"			
+				   >
+				   Widoczny
+				   </label>
+				   <label class="radio-inline mx-2">
+				   <input
+						type="radio"
+						[(ngModel)] ="model.isVisible"
+						name="isVisible"
+						[value] ="false"
+						formControlName	="isVisible"						
+				   >
+				   Niewidoczny
+				   </label>
+				   </div>
+					</div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+					<span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+				</button>
+            </div>	        
+    </form>
+    </div>
+</div>

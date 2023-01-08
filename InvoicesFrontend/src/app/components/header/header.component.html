@@ -1,0 +1,14 @@
+<div class="container my-3 px-5"> 
+    <div class="row">
+        <div class = "col-6" style="width:160px; height:50px" >
+            <img src="assets/images/logo.svg" width="50px" height="50px"> 
+        </div>  
+        <app-display  class = "col-6 mx-auto" 
+        [update]="update"
+    ></app-display>  
+    </div>     
+</div>
+<app-navbar
+[parentApi]="getUpdateDateParentApi()"
+[date]="update"
+></app-navbar>

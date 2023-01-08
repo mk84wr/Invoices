@@ -1,0 +1,93 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Dodaj użytkownika</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="userForm" (ngSubmit)="addUser()">
+				<div class = "row mt-2 form-group">
+					<label class ="col-4"><div class ="label">Nazwa</div></label>
+					<input
+						class ="col-5"
+						type="text"
+						[(ngModel)]="model.name"
+						name="name"  
+						formControlName="name" 
+						maxlength="50" 
+						#nameRef        
+					>
+					<div class="offset-4 count">
+						<span>{{nameRef.value.length}}</span><span>/50</span>
+					</div>
+					<span class="text-danger" *ngIf="(userFormControl['name'].touched || submitted) && userFormControl['name'].errors?.['invalid'] ">
+						Nazwa jest polem obowiązkowym
+					</span>
+				</div>	
+                <div class = "row mt-2 form-group">
+					<label class ="col-4"><div class ="label">Email</div></label>
+					<input
+						class ="col-5"
+						type="email"
+						[(ngModel)]="model.email"
+						name="email"
+						formControlName="email"   
+						maxlength="50" 
+						#emailRef        
+					>
+					<div class="offset-4 count">
+						<span>{{emailRef.value.length}}</span><span>/50</span>
+					</div>
+					<span class="text-danger" *ngIf="(userFormControl['email'].touched || submitted) && userFormControl['email'].errors?.['invalid'] ">
+						E-mail jest polem obowiązkowym
+					</span>
+					<span class="text-danger" *ngIf="(userFormControl['email'].touched || submitted) && userFormControl['email'].errors?.['email'] ">
+						E-mail niepoprawny
+					</span>
+				</div>	                
+                <div class="row my-2 form-group">
+                    <label class ="col-3">Rola</label>
+                    <div class="form-control col-5">
+                    <label class="radio-inline mx-2">
+                   <input
+                        type="radio"
+                        [(ngModel)] ="model.roleId"
+                        name="role"
+                        [value] =3	
+						formControlName="role"				
+                   >
+                   Użytkownik
+                   </label>
+                   <label class="radio-inline mx-2">
+                   <input
+                        type="radio"
+                        [(ngModel)] ="model.roleId"
+                        name="role"
+                        [value] =2	
+						formControlName="role"					
+                   >
+                   Moderator
+                   </label>
+                   <label class="radio-inline mx-2">
+                    <input
+                         type="radio"
+                         [(ngModel)] ="model.roleId"
+                         name="role"
+                         [value] =1	
+						 formControlName="role"					
+                    >
+                    Administrator
+                    </label>
+                   </div>
+				   <span class="text-danger" *ngIf="(userFormControl['role'].touched || submitted) && userFormControl['role'].errors?.['required'] ">
+					Rola jest polem obowiązkowym
+				</span>
+                    </div>					
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+						<span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>
+					</button>
+				</div>				
+		</form>
+	</div>	
+</div>  
+

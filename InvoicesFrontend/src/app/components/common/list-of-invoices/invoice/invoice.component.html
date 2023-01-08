@@ -1,0 +1,22 @@
+<div class="row mt-3 border" *ngIf="!customerId && !categoryId" style="align-items: center">		
+	<div class = "col-1" style="cursor: pointer" (click)="details()"><div class="field">{{index}}</div></div> 
+	<div class = "col-2 d-none d-lg-block col-xl-1" style="cursor: pointer" (click)="details()"><div class="field">{{(((invoice?.number?.length)??'')>11)?(invoice?.number | slice:0:11)+'...':(invoice?.number)}}</div></div>
+	<div  [ngClass]="auth.isModerator()?'col-4 col-lg-2':'col-4 col-lg-2'" style="cursor: pointer"  (click)="customerDetails(invoice?.customerId)"><div class="field">{{(((invoice?.customer?.length)??'')>10)?(invoice?.customer | slice:0:10)+'...':(invoice?.customer)}}</div></div> 
+	<div [ngClass]="auth.isModerator()?'col-2 d-none d-md-block col-xl-1':'col-2 d-none d-md-block'" style="cursor: pointer" (click)="details()"><div class="field">{{(((invoice?.category?.length)??'')>10)?(invoice?.category | slice:0:10)+'...':(invoice?.category)}}</div></div>
+	<div class = "col-3 col-xl-2" style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.dueDate | date: 'yyyy-MM-dd'}}</div></div>	
+	<div class = "col-1 d-none d-xl-block" style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.value}}</div></div>
+	<div [ngClass]="auth.isModerator()? 'col-3 col-md-2 col-xl-1':'col-3 col-md-2'" style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.toPay}}</div></div>		
+	<div class = "col-1 d-none d-xl-block" ><div type="button" class ="btn btn-success btn-sm" style="box-shadow: none !important" (click)="settle(invoice?.id)" *ngIf="auth.isModerator()">Rozlicz</div></div>
+	<div class = "col-1 d-none d-xl-block" ><div class ="btn btn-warning btn-sm" style="box-shadow: none !important" (click)="edit(invoice?.id)" *ngIf="auth.isModerator()">Edytuj</div></div>
+	<div class = "col-1 d-none d-xl-block" ><button type="button"  class ="btn btn-danger btn-sm" style="box-shadow: none !important" (click)="delete(invoice?.id)" *ngIf="auth.isModerator()">Usuń</button></div>
+
+</div>
+<div class="row mt-3 border" *ngIf="customerId || categoryId" style="align-items: center">	
+		<div class = "col-1 " style="cursor: pointer" (click)="details()"><div class="field">{{index}}</div></div> 
+		<div class = "col-2 d-none d-lg-block " style="cursor: pointer" (click)="details()"><div class="field">{{(((invoice?.number?.length)??'')>11)?(invoice?.number | slice:0:11)+'...':(invoice?.number)}}</div></div>
+		<div class = "col-5 col-lg-3 " style="cursor: pointer" (click)="customerDetails(invoice?.customerId)"  *ngIf="!customerId"><div class="field">{{(((invoice?.customer?.length)??'')>10)?(invoice?.customer | slice:0:10)+'...':(invoice?.customer)}}</div></div> 
+		<div class = "col-5 col-lg-3 " style="cursor: pointer" (click)="details()" *ngIf="!categoryId"><div class="field">{{(((invoice?.category?.length)??'')>10)?(invoice?.category | slice:0:10)+'...':(invoice?.category)}}</div></div>	
+		<div class = "col-3 col-lg-2 " style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.dueDate | date: 'yyyy-MM-dd'}}</div></div>
+		<div class = "col-2 d-none d-lg-block" style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.value}}</div></div>
+		<div class = "col-3 col-lg-2 " style="cursor: pointer" (click)="details()"><div class="field">{{invoice?.toPay}}</div></div>		
+</div>

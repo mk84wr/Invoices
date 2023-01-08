@@ -1,0 +1,14 @@
+<nav *ngIf="auth.isLogged()">
+    <div class="container bg-light ">        
+        <ul class="nav navbar-brand" >
+            <li class="nav-item"><a class="nav-link" routerLink="/faktury" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Faktury</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/kontrahenci" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Kontrahenci</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/kategorie" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Kategorie</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/uzytkownicy" *ngIf="auth.isAdmin()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Użytkownicy</a></li>
+            <button class="btn btn-primary mx-1 my-1 " style="box-shadow: none !important" (click)="userPanel()" >Panel użytkownika</button>
+            <button class="btn btn-primary mx-1 my-1" style="box-shadow: none !important" (click)="passwordChange()" >Zmiana hasła</button>
+            <button class="btn btn-primary mx-1 my-1" style="box-shadow: none !important" (click)="updateDate()" *ngIf="auth.isModerator()">Aktualizacja</button>
+            <button class="btn btn-primary mx-1 my-1" style="box-shadow: none !important" (click)="logout()">Wyloguj</button>
+        </ul>        
+    </div>
+</nav>

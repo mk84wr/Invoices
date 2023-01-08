@@ -1,0 +1,20 @@
+<div>
+	<div class="modal-header">
+		<h4>Reset hasło</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form  class="position-relative " [formGroup]="resetForm" (ngSubmit)="reset()">
+			<div class="row  mx-auto">
+				<label>Email</label>
+				<input type="text" class="form-control" [(ngModel)] ="resetPassword.email" formControlName="username">
+				<span class="text-danger" *ngIf="(resetFormControl['username'].touched || submitted) && resetFormControl['username'].errors?.['invalid'] ">
+					Email jest polem obowiązkowym
+				</span>	
+			</div>
+			<button type="submit" style="box-shadow: none !important" class="btn btn-primary mt-3 " [disabled]="submittedButton">
+				<span *ngIf="!submittedButton">Resetuj</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>    
+			</button>			
+		</form>	
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Dodaj kategorię</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+			<div class="row form-group mb-2">
+				<label class ="col-3"><div class ="label">Nazwa</div></label>
+				<input
+					class ="col-5"
+					type="text"
+					[(ngModel)]="model.name"
+					name="name"   
+					formControlName="name" 
+					maxlength="20" 
+					#nameRef       
+				>
+				<div class="offset-3 count">
+					<span>{{nameRef.value.length}}</span><span>/20</span>
+				</div>				
+				<span class="text-danger" *ngIf="(categoryFormControl['name'].touched || submitted) && categoryFormControl['name'].errors?.['invalid'] ">
+                    Nazwa jest polem obowiązkowym
+                </span>
+			</div> 
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton"><span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span></button>	      
+			</div>
+		</form>
+	</div>
+    
+</div>  
+

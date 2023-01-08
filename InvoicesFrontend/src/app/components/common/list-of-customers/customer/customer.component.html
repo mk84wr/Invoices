@@ -1,0 +1,11 @@
+<div class="row mt-3 border" style="align-items: center">
+	<div class = "col-1" style="cursor: pointer" (click)="details()"><div class="field">{{index}}</div></div> 
+	<div [ngClass]="auth.isModerator()? 'col-6 col-lg-3 col-xl-3': 'col-6 col-lg-4 col-xl-4'" style="cursor: pointer" (click)="details()"><div class="field">{{(((customer?.name?.length)??'')>20)?(customer?.name | slice:0:20)+'...':(customer?.name)}}</div></div>
+    <div class = "col-1 d-none d-xl-block" style="cursor: pointer" (click)="details()"><div class="field">{{customer?.nip}}</div></div>     
+    <div class = "col-3 d-none d-lg-block col-xl-2" style="cursor: pointer" (click)="details()"><div class="field">{{customer?.total}}</div></div>
+    <div [ngClass]="auth.isModerator()?'col-3 col-lg-2' : 'col-3'" style="cursor: pointer" (click)="details()"><div class="field">{{customer?.sum}}</div></div>
+    <div class = "col-2 col-lg-1"><div class ="btn btn-success btn-sm" style="box-shadow: none !important" (click)="invoices(customer?.id)">Faktury</div></div>	
+	<div class = "col-1 d-none d-lg-block"><div class ="btn btn-warning btn-sm" style="box-shadow: none !important"(click)="edit(customer?.id)" *ngIf="auth.isModerator()" >Edytuj</div></div>
+    <div class = "col-1 d-none d-lg-block"><div class ="btn btn-danger btn-sm" style="box-shadow: none !important" (click)="delete(customer?.id)" *ngIf="auth.isModerator()">Usuń</div></div>	
+</div>
+

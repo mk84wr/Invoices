@@ -1,0 +1,21 @@
+<div class="container">
+    <div *ngIf=!isLoading>
+      <div class="row my-2">
+        <button class="btn btn-primary col-2 mx-3 btn-sm"  (click)="filter()" style="box-shadow: none !important; min-width: 150px">Filtrowanie</button>			
+        <button class="btn btn-primary col-2 mx-3 btn-sm" (click)="toPdf()" style="box-shadow: none !important">PDF</button>
+        <button class="btn btn-primary col-2 mx-3 btn-sm" (click)="addCustomer()" style="box-shadow: none !important" *ngIf="auth.isModerator()">Dodaj</button>	
+      </div>    
+      <app-list-of-customers
+        [customers]="customers"
+        [parentApi]="getCustomerParentApi()">        
+      </app-list-of-customers>    
+    </div>
+    <div *ngIf=isLoading style="margin-top:200px">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" style="width: 5rem; height: 5rem;" role="status">
+          <span class="sr-only"></span>
+        </div>
+        </div>
+	</div>
+</div>
+		

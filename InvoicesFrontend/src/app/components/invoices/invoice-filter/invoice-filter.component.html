@@ -1,0 +1,227 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Filtrowanie</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form #invoiceForm="ngForm" (ngSubmit)="filter()" >
+               <div class = "row mt-2">
+                    <label class ="col-6"><div class ="label">Minimalna data płatności</div></label>
+<input
+class="col-5"
+	type="date"
+	[ngModel]="model.minDueDate | date:'yyyy-MM-dd'"
+     (ngModelChange)="model.minDueDate = $event"
+	name="minDueDate"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Maksymalna data płatności</div></label>
+<input
+class ="col-5"
+	type="date"
+	[ngModel]="model.maxDueDate | date:'yyyy-MM-dd'"
+     (ngModelChange)="model.maxDueDate = $event"
+	name="maxDueDate"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Minimalna data wystawienia</div></label>
+<input
+class="col-5"
+type="date"
+[ngModel]="model.minDateOfInvoice | date:'yyyy-MM-dd'"
+(ngModelChange)="model.minDateOfInvoice = $event"
+name="minDateOfInvoice"
+/>
+</div>
+<div class = "row mt-2">
+<label class ="col-6"><div class ="label">Maksymalna data wystawienia</div></label>
+<input
+class ="col-5"
+type="date"
+[ngModel]="model.maxDateOfInvoice | date:'yyyy-MM-dd'"
+(ngModelChange)="model.maxDateOfInvoice = $event"
+name="maxDateOfInvoice"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Minimalna kwota do zapłaty</div></label>
+<input
+class ="col-5"
+	type="number"  step="0.01"
+	[(ngModel)]="model.minToPay"
+	name="minToPay"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Maksymalna kwota do zapłaty</div></label>
+<input
+class ="col-5"
+	type="number"  step="0.01"
+	[(ngModel)]="model.maxToPay"
+	name="maxToPay"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Minimalna data rozliczenia</div></label>
+<input
+class ="col-5"
+	type="date"	
+     [ngModel]="model.minSettlementDate"
+     (ngModelChange)="model.minSettlementDate = $event"
+	name="minSettlementDate"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Maksymalna data rozliczenia</div></label>
+<input
+class ="col-5"
+	type="date"
+	[ngModel]="model.maxSettlementDate | date:'yyyy-MM-dd'"
+     (ngModelChange)="model.maxSettlementDate = $event"
+	name="maxSettlementDate"
+/>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Kontrahent</div></label>
+<input
+class ="col-5"
+	type="text"
+	[(ngModel)]="model.customer"
+	name="customer"            
+>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Numer</div></label>
+<input
+class ="col-5"
+	type="text"
+	[(ngModel)]="model.number"
+	name="number"            
+>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">NIP</div></label>
+<input
+class ="col-5"
+	type="text"
+	[(ngModel)]="model.nip"
+	name="nip"            
+>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Kategoria</div></label>
+<input
+class ="col-5"
+	type="text"
+	[(ngModel)]="model.category"
+	name="category"            
+>
+</div>
+<div class = "row mt-2">
+     <label class ="col-6"><div class ="label">Sortuj wg</div></label>
+<select [(ngModel)] ="model.sortBy" name="sortBy" class ="col-5">
+     <option *ngFor = "let field of fields" [ngValue]="field.en">
+          {{field.pl}}
+     </option>
+</select> 
+</div>
+<div class="row mt-2">
+<div class="form-control ">
+     <label class="radio-inline mx-2">
+    <input
+         type="radio"
+         [(ngModel)] ="model.ascending"
+         name="ascending"
+         [value] ="true"	         				
+    >
+    Rosnąco
+    </label>
+    <label class="radio-inline mx-2">
+    <input
+         type="radio"
+         [(ngModel)] ="model.ascending"
+         name="ascending"
+         [value] ="false"         					
+    >
+    Majejąco
+    </label>   
+ </div>
+</div>
+<div class="row mt-2">
+<div class="form-control">
+    <label class="radio-inline mx-2">
+   <input
+        type="radio"
+        [(ngModel)] ="model.isActive"
+        name="isActive"
+        [value] ="true"					
+   >
+   Aktywni
+   </label>
+   <label class="radio-inline mx-2">
+   <input
+        type="radio"
+        [(ngModel)] ="model.isActive"
+        name="isActive"
+        [value] ="false"						
+   >
+   Nieaktywni
+   </label>
+   <label class="radio-inline mx-2">
+    <input
+         type="radio"
+         [(ngModel)] ="model.isActive"
+         name="isActive"
+         [value] ="null"						
+    >
+    Wszyscy
+    </label>
+</div>
+</div>
+<div class="row my-2">
+<div class="form-control">
+    <label class="radio-inline mx-2">
+   <input
+        type="radio"
+        [(ngModel)] ="model.isVisible"
+        name="isVisible"
+        [value] ="true"					
+   >
+   Widoczni
+   </label>
+   <label class="radio-inline mx-2">
+   <input
+        type="radio"
+        [(ngModel)] ="model.isVisible"
+        name="isVisible"
+        [value] ="false"						
+   >
+   Niewidoczni
+   </label>
+   <label class="radio-inline mx-2">
+    <input
+         type="radio"
+         [(ngModel)] ="model.isVisible"
+         name="isVisible"
+         [value] ="null"						
+    >
+    Wszyscy
+    </label>
+</div>
+</div>
+<div class="modal-footer">
+     <button type="reset" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+          <span *ngIf="!submittedButton">Reset</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+     </button>     
+     <button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+          <span *ngIf="!submittedButton">Filtruj</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+     </button>
+</div>		
+</form>
+</div>	
+</div>  
+  
+
+

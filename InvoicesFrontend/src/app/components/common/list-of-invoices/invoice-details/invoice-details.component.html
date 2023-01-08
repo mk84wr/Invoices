@@ -1,0 +1,37 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Szczegóły faktury nr&nbsp;</div><div class="title_label">{{invoice.number}}</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Data wystawienia</div></label>
+            <label class ="col-5"><div class ="field">{{invoice.dateOfInvoice | date:'yyyy-MM-dd'}}</div></label> 
+        </div>        
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Termin płatności</div></label>
+            <label class ="col-5"><div class ="field">{{invoice.dueDate | date:'yyyy-MM-dd'}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Data rozliczenia</div></label>
+            <label class ="col-5"><div class ="field">{{invoice?.settlementDate  ? (invoice?.settlementDate | date: 'yyyy-MM-dd') : 'Nierozliczona'}}</div></label>
+        </div>
+        <div class = "row mt-3 border" >
+            <label class ="col-5"><div class ="label">Wartość</div></label>
+            <label class ="col-5"><div class ="field">{{invoice.value}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Pozostało do zapłaty</div></label>
+            <label class ="col-5"><div class ="field">{{invoice.toPay}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label><div class ="label">Kontrahent</div></label>
+            <label><div class ="field">{{invoice.customer}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label><div class ="label">Kategoria</div></label>
+            <label><div class ="field">{{invoice.category}}</div></label> 
+        </div>
+    </div>
+</div>
+

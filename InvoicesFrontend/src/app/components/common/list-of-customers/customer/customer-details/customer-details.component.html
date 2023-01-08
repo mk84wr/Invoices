@@ -1,0 +1,52 @@
+<div>
+	<div class="modal-header">
+		<div class ="row">
+			<div class="title">Szczegóły kontrahenta</div>
+			<div class="w-100"></div>
+			<div class="title_label">{{customer.name}}</div>
+		</div>		
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Nazwa</div></label>
+            <label class ="col-5"><div class ="field">{{customer.name}}</div></label> 
+        </div>        
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">NIP</div></label>
+            <label class ="col-5"><div class ="field">{{customer.nip}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Miasto</div></label>
+            <label class ="col-5"><div class ="field">{{customer.city}}</div></label>
+        </div>
+        <div class = "row mt-3 border" >
+            <label class ="col-5"><div class ="label">Ulica</div></label>
+            <label class ="col-5"><div class ="field">{{customer.street}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Numer telefonu</div></label>
+            <label class ="col-5"><div class ="field">{{customer.phone}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Email</div></label>
+            <label class ="col-5"><div class ="field">{{customer.email}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Czy aktywny</div></label>
+            <label class ="col-5"><div class ="field">{{customer.isActive==true?'Aktywny':'Nieaktywny'}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Czy widoczny</div></label>
+            <label class ="col-5"><div class ="field">{{customer?.isVisible==true?'Widoczny':'Niewidoczny'}}</div></label> 
+        </div>
+        <div class = "row mt-3 border" >
+            <label class ="col-5"><div class ="label">Suma wystawionych faktur</div></label>
+            <label class ="col-5"><div class ="field">{{customer.total}}</div></label>
+        </div>
+        <div class = "row mt-3 border">
+            <label class ="col-5"><div class ="label">Suma do zapłaty</div></label>
+            <label class ="col-5"><div class ="field">{{customer.sum}}</div></label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class = "col-1"><div class="field">Lp</div></div>  
+    <div [ngClass]="auth.isModerator()? 'col-6 col-lg-3 col-xl-3': 'col-6 col-lg-4 col-xl-4'"><div class="field">Nazwa</div></div>
+    <div class = "col-1 d-none d-xl-block"><div class="field">NIP</div></div>    
+    <div class = "col-3 d-none d-lg-block col-xl-2"><div class="field">Wystawione</div></div>
+    <div [ngClass]="auth.isModerator()?'col-3 col-lg-2' : 'col-3'"><div class="field">Niezapłacone</div></div>
+    <div class = "col-2 col-lg-1"></div>
+    <div class = "col-1 d-none d-lg-block"><div  *ngIf="auth.isModerator()"></div></div>
+    <div class = "col-1 d-none d-lg-block"><div *ngIf="auth.isModerator()"></div></div>
+  </div>
+  <app-customer *ngFor="let customer of customers | slice: (page-1) * pageSize : page * pageSize; let i = index"
+  [customer]=customer
+  [index]="(page-1) * pageSize + i+1"
+  [parentApi]="getCustomerParentApi()"
+></app-customer>
+<div class="my-3"></div>
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="customers.length"
+  [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
+</ngb-pagination>
+</div>
+
+

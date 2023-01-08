@@ -1,0 +1,25 @@
+<div>
+	<div class="modal-header">
+		<div class="title">Data aktualizacji</div>
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form #invoiceForm="ngForm" (ngSubmit)="edit()">
+            <div class = "row my-2">
+                <label class ="col-5"><div class ="label">Data aktualizacji</div></label>
+                <input
+                    class ="col-5"
+                    type="date"
+                    [ngModel]="model.updateDate | date:'yyyy-MM-dd'" 
+                    (ngModelChange)="model.updateDate = $event"                    
+                    name ="dateOfInvoice"            
+                />
+			</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary float-end mt-3" style="box-shadow: none !important" [disabled]="submittedButton">
+						<span *ngIf="!submittedButton">Zapisz</span><span *ngIf="submittedButton"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Czekaj</span>	
+					</button>
+				</div>
+			</form>            
+    </div>
+</div> 

@@ -1,0 +1,22 @@
+export interface InvoiceParameters {
+    minDueDate?: Date ,
+    maxDueDate?: Date,
+    minToPay?: number,
+    maxToPay?:number,
+    minSettlementDate?: Date,
+    maxSettlementDate?: Date,
+    isActive?: boolean,
+    isVisible?: boolean,
+    numberPerPage?: number,
+    page?: number ,
+    sortBy?: string,
+    ascending?: boolean ,
+    number?: string,
+    customer?: string,
+    category?: string,
+    customerId?: number,
+    categoryId?: number,
+    minDateOfInvoice?: Date, 
+    maxDateOfInvoice?: Date ,
+    nip?: string
+}

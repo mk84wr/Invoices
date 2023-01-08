@@ -1,0 +1,25 @@
+<div>
+	<div class="modal-header">
+		<div class ="row">
+			<div class="title">Faktury kontrahenta:</div>
+			<div class="w-100"></div>
+			<div class="title_label">{{fromParent.customer.name}}</div>
+		</div>			
+		<button type="button" class="btn-close" aria-label="Close" style="box-shadow: none !important" (click)="activeModal.dismiss()"></button>
+	</div>
+    <div class="modal-body" *ngIf=!isLoading>
+		<div class="row mb-2"><button class="btn btn-primary col-2 mx-auto btn-sm" style="box-shadow: none !important ; min-width: 150px" (click)="filter()">Filtrowanie</button></div>
+		<app-list-of-invoices
+			[invoices]="invoices"
+			[customerId]="fromParent.customer.id"
+		>
+		</app-list-of-invoices>
+    </div>
+	<div *ngIf=isLoading style="margin-top:150px">
+		<div class="d-flex justify-content-center">
+			<div class="spinner-border text-primary" style="width: 5rem; height: 5rem;" role="status">
+			  <span class="sr-only"></span>
+			</div>
+		  </div>
+	</div>
+</div>
